@@ -1,0 +1,47 @@
+{
+  "name": "recipe-box",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open\" \"nodemon ./server/server.js\"",
+    "build": "NODE_ENV=production webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimballcaroline/recipe-box.git"
+  },
+  "author": "Caroline Kimball",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^6.5.1",
+    "express": "^4.16.3",
+    "mongoose": "^6.8.0",
+    "node-fetch": "^2.3.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-hot-loader": "^4.6.3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "concurrently": "^5.0.0",
+    "cross-env": "^6.0.3",
+    "eslint": "^7.12.1",
+    "eslint-plugin-css-modules": "^2.11.0",
+    "eslint-plugin-react": "^7.21.5",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.20",
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0",
+    "webpack-hot-middleware": "^2.24.3"
+  }
+}
