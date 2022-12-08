@@ -1,48 +1,65 @@
 import React, {Component} from 'react';
-// import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import '../stylesheets/recipePage.scss';
 
 class RecipePage extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   recipesList: {},
-    //   fetchedRecipes: false
-    // };
+    const {pathname} = window.location;
+    const id = pathname.split("/").pop();
 
-    // this.addRecipes = this.addRecipes.bind(this);
-    // const { id } = useParams();
-    // console.log(id);
+    this.state = {
+      recipesList: {},
+      id: id,
+      recipe: {},
+      fetchedRecipe: false
+    };
+
+    // this.addRecipe = this.addRecipe.bind(this);
   }
-
 
   componentDidMount() {
- 
-    // fetch('/recipe/*')
-    // fetch('/api/recipes')
-    //   // .then(res=> console.log(res))
-    //   .then(res => res.json())
-    //   // .then(() => console.log('console.log'))
-    //   .then(res => this.addRecipes(res))
-    //   .catch(err => console.log('App.componentDidMount: get recipes ERROR: ', err));
+
+    fetch('/api/recipes')
+      .then(res => res.json())
+      .then(res => this.addRecipes(res))
+      .catch(err => console.log('App.componentDidMount: get recipes ERROR: ', err));
   }
 
-  // addRecipes(recipes) {
-  //   const recipesList = [...recipes];
-  //   this.setState( {recipesList});
-  //   this.setState({fetchedRecipes: true});
-  // }
+  addRecipes(recipes) {
+    const recipesList = [...recipes];
+    this.setState( {recipesList});
+    return this.findRecipe(this.state.recipesList);
+  }
+
+  findRecipe(recipes) {
+    for(let i=0; i<recipes.length; i++) {
+      if(recipes[i]._id === this.state.id) {
+        this.setState({recipe: {...recipes[i]}});
+        this.setState({fetchedRecipe: true});
+      }
+    }
+  }
 
   render() {
-    // if(!this.state.fetchedRecipes) return null;
-
+    if(!this.state.fetchedRecipe) return null;
+    const { recipe } = this.state;
     return (
-      <div className="app">
-        <header className="appHeader">
-          <h1>Recipe Page</h1>
-          <p>Subheading all about Recipe Box</p>
+      <div className="recipe-page-contents">
+        <header className="header">
+            <Link to="/allRecipes" className="home-btn">Back</Link>
+            <Link to="/addRecipe" className="add-recipe-btn">Add Recipe</Link>
         </header>
-        {/* <Recipes {...this.state.recipesList}/> */}
+        <div className="recipe-info">
+          {/* <h1>Recipe Page</h1> */}
+          <h1>{recipe.title}</h1>
+          <img src={recipe.imageSource} alt="" />
+          <h2>Description</h2>
+          <p>{recipe.description}</p>
+          <h2>Instructions</h2>
+        <p >{recipe.instructions}</p>
+        </div>
       </div>
     );
   }

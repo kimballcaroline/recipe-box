@@ -1,77 +1,10 @@
+// @import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@300;400;600&display=swap');
+@import './variables';
 
-.app{
-//  max-width: 1000px;
- margin: 20px 60px 0px 60px;
-
- .appHeader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
- }
-}
-
-.recipesContainer .recipesHeader {
-  display: flex;
-  justify-content: center;
-}
-
-.recipeCardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  flex-basis: 600px;
-}
-
-.recipeCard {
-  background-color:white;
-  border: 1px solid #DAE1E7;
-  margin: 5px;
-  width: 300px;
-  box-shadow: 10px 5px 5px #F1F5F8;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  // justify-content: flex-end;
-}
-
-.imgContainer {
-   img {
-    max-width: 280px;
-    max-height: 400px;
-    padding: 1rem;
-    border-radius: 5px;
-  }
-}
-
-.recipeInfoContainer{
-  height: 140px;
-
-  .recipeTitle {
-  color: blue;
-  padding-left: 1rem;
-  margin: 0;
-  }
-
-  .recipeDescription {
-  color: red;
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 1rem;
-  }
-}
-
-
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-
-  .button {
-  text-align: center;
-  width: 280px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid lightblue;
-  border-radius: 5px;
-  background-color: lightblue;
-  }
+#app{
+ width: 428px;
+//  height: 926px;
+ background-color: $background-color;
+ margin: 0 auto;
+ font-family: $main-font;
 }

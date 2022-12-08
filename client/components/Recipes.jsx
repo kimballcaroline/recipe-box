@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecipeCard from './RecipeCard.jsx';
+import '../stylesheets/recipes.scss';
 
 
 class Recipes extends Component {
@@ -24,7 +25,7 @@ class Recipes extends Component {
 
     return(
       <section className="recipesContainer">
-        <h2 className="recipesHeader">Recipes</h2>
+        <h2 className="recipesHeader">My Recipes</h2>
         <div className="recipeCardsContainer">{recipeCards}</div>
       </section>
     )

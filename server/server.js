@@ -31,6 +31,11 @@ app.put('/api/recipes', recipeController.addRecipe, (req, res) => {
   return res.status(200).send(res.locals.recipe);
 })
 
+// app.get('/api/recipes/?id=*', recipeController.getOneRecipe, (req, res) => {
+//   // return res.status(200).json(res.locals.allRecipes);
+//    return res.status(200).send('server is done!');
+// });
+
 app.get('/api/recipes', recipeController.getRecipes, (req, res) => {
   return res.status(200).json(res.locals.allRecipes);
 });
@@ -40,9 +45,11 @@ app.delete('/api/recipes', recipeController.deleteRecipe, (req, res) => {
 });
 
 // //handle requests to recipe page
-app.get('/recipe/*', recipeController.getOneRecipe, (req, res) => {
-  return res.status(200).render('../client/components/RecipePage.jsx');
-});
+// app.get('/recipe/*', 
+// // recipeController.getOneRecipe, 
+// (req, res) => {
+//   return res.send('server responsed!');
+// });
 
 
 // respond with main app

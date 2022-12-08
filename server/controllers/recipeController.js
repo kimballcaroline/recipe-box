@@ -31,15 +31,17 @@ recipeController.deleteRecipe = (req, res, next) => {
   });
 }
 
-recipeController.getOneRecipe = (req, res, next) => {
-  console.log('req params: ' + req.params);
-//   const _id = req.params[0];
-//   Recipe.findOne({_id}, (err, recipe) => {
-//     if(err) return next('Error in recipeController.findOneRecipe get request: ' + JSON.stringify(err));
-//     res.locals.recipe = recipe;
-//     return next();
-//  });
-}
+// recipeController.getOneRecipe = (req, res, next) => {
+//   console.log('getOneRecipe fired');
+//   // console.log('req params: ' + req.params);
+// //   const _id = req.params[0];
+// //   Recipe.findOne({_id}, (err, recipe) => {
+// //     if(err) return next('Error in recipeController.findOneRecipe get request: ' + JSON.stringify(err));
+// //     res.locals.recipe = recipe;
+// //     return next();
+// //  });
+//   return next();
+// }
 
 
 //STRETCH FEATURE: EDIT PRE-EXISTING RECIPES

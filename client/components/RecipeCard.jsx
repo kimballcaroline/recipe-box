@@ -1,6 +1,6 @@
 import React from 'react';
-// import { redirect } from "react-router-dom";
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import '../stylesheets/recipeCard.scss';
 
 
 const RecipeCard = (props) => {
@@ -23,9 +23,8 @@ const RecipeCard = (props) => {
         <h2 className="recipeTitle">{title}</h2>
         <p className="recipeDescription">{description}</p>
       </div>
-      <div className="buttonContainer">
-        {/* <button onClick={handleClick}>View</button> */}
-        <Link to={path} className="button">View</Link>
+      <div className="view-btn-wrapper">
+        <Link to={path} className="view-btn">View</Link>
       </div>
       
     </section>

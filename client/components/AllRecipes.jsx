@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Recipes from './Recipes.jsx'; 
 import { Link } from 'react-router-dom';
-import '../stylesheets/home.scss';
-import recipe_box_home from "../../docs/assets/images/recipe_box_home.jpg";
+import '../stylesheets/allRecipes.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -33,20 +32,12 @@ class Home extends Component {
   render() {
     if(!this.state.fetchedRecipes) return null;
     return (
-      <div className="home-contents">
+      <div className="all-recipes-contents">
         <header className="header">
-          <h1>Recipe Box</h1>
-          <h2>Wherever you go, your recipes can follow</h2>
+            <Link to="/" className="home-btn">Home</Link>
+            <Link to="/addRecipe" className="add-recipe-btn">Add Recipe</Link>
         </header>
-        <img src={recipe_box_home} alt="illustration of common foods" />
-        <div className="primary-btn-wrapper">
-          <Link to="/allRecipes" className="primary-btn">View All Recipes</Link>
-        </div>
-        <div className="secondary-btn-wrapper">
-          <Link to="/addRecipe" className="secondary-btn">Add Recipe</Link>
-        </div>
-        
-        {/* <Recipes {...this.state.recipesList}/> */}
+        <div className="recipes-component-wrapper"><Recipes {...this.state.recipesList}/></div>
       </div>
     );
   }
