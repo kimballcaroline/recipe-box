@@ -2,12 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import App from './App.jsx';
+import './stylesheets/styles.scss';
 
 
 render(
-  // <Provider store={store}>  
-  //   <App />
-  // </Provider>,
   <BrowserRouter>
     <App />
   </BrowserRouter>,

@@ -38,7 +38,9 @@ devServer: {
     port: 8080,
     hot: true,
     proxy: {
+      // '/': 'http://localhost:3000/',
     '/api/**': 'http://localhost:3000/',
+    // '/recipe/**': 'http://localhost:3000/',
   },
     headers: {'Access-Control-Allow-Origin': '*'},
 },

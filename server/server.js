@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const exp = require('constants');
+// const exp = require('constants');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -37,7 +37,13 @@ app.get('/api/recipes', recipeController.getRecipes, (req, res) => {
 
 app.delete('/api/recipes', recipeController.deleteRecipe, (req, res) => {
   return res.status(200).send('Successfully deleted: ' + res.locals.title);
-})
+});
+
+// //handle requests to recipe page
+app.get('/recipe/*', recipeController.getOneRecipe, (req, res) => {
+  return res.status(200).render('../client/components/RecipePage.jsx');
+});
+
 
 // respond with main app
 app.get('/', (req, res) => (

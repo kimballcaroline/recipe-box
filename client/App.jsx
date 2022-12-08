@@ -1,45 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home.jsx";
+// import RecipePage from "./components/RecipePage.jsx";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+export default function App() {
+  return (
+    // // <Router>
+    //   <Home />
+    // // </Router>
 
-    this.state = {
-      recipesList: {},
-      fetchedRecipes: false
-    };
+    <Routes>
+      <Route path="/" exact element={<Home />} />
+      {/* <Route path="/recipe" element={<RecipePage />} /> */}
+      {/* <Route path="recipe/:id" element={<RecipePage />} /> */}
+    </Routes>
 
-    this.addRecipes = this.addRecipes.bind(this);
-
-  }
-
-  componentDidMount() {
-    fetch('/api/recipes')
-      .then(res => res.json())
-      .then(res => this.addRecipes(res))
-      .then(console.log('fetched recipes!'));
-  }
-
-  addRecipes(recipes) {
-    console.log('add recipes fired!');
-    const recipesList = [...recipes];
-    console.log(recipesList)
-    this.setState( {recipesList});
-    console.log(this.state.recipesList);
-    this.setState({fetchedRecipes: true});
-  }
-
-  render() {
-    if(!this.state.fetchedRecipes) return null;
-    const pageProps = {
-      recipes: this.state.recipes
-    }
-    return (
-      <div>Testing from App.jsx
-        <RecipesContainer {...pageProps} />
-      </div>
-    );
-  }
+  )
 }
-
-export default App;
