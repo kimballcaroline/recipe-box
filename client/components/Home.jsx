@@ -36,11 +36,11 @@ class Home extends Component {
       <div className="home-contents">
         <header className="header">
           <h1>Recipe Box</h1>
-          <h2>Wherever you go, your recipes can follow</h2>
+          <h2>Wherever you go, your recipes will follow</h2>
         </header>
         <img src={recipe_box_home} alt="illustration of common foods" />
         <div className="primary-btn-wrapper">
-          <Link to="/allRecipes" className="primary-btn">View All Recipes</Link>
+          <Link to="/allRecipes" className="primary-btn">My Recipes</Link>
         </div>
         <div className="secondary-btn-wrapper">
           <Link to="/addRecipe" className="secondary-btn">Add Recipe</Link>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../stylesheets/recipePage.scss';
 
 class RecipePage extends Component {
@@ -13,19 +13,27 @@ class RecipePage extends Component {
       recipesList: {},
       id: id,
       recipe: {},
-      fetchedRecipe: false
+      fetchedRecipe: false,
+      recipeDeleted: false
     };
 
     // this.addRecipe = this.addRecipe.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
   }
 
   componentDidMount() {
-
     fetch('/api/recipes')
       .then(res => res.json())
       .then(res => this.addRecipes(res))
       .catch(err => console.log('App.componentDidMount: get recipes ERROR: ', err));
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(this.state.recipeDeleted === true){
+  //   const navigate = useNavigate();
+  //   navigate("/allRecipes");
+  //   }
+  // }
 
   addRecipes(recipes) {
     const recipesList = [...recipes];
@@ -42,24 +50,50 @@ class RecipePage extends Component {
     }
   }
 
+  deleteRecipe(event) {
+    const { recipe } = this.state;
+    event.preventDefault();
+    const postPath = "/api/recipes";
+    fetch(postPath, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({
+        title: recipe.title
+      })
+    })
+    .then((res)=> {
+      alert('Congrats! You successfully deleted a recipe to your database!');
+      this.setState({recipeDeleted: true});
+    })
+    .catch(err => console.log('RecipePage: delete recipe ERROR: ', err));
+  }
+
   render() {
     if(!this.state.fetchedRecipe) return null;
+    if(this.state.recipeDeleted) return <Navigate to="/allRecipes"/>
     const { recipe } = this.state;
+
     return (
       <div className="recipe-page-contents">
         <header className="header">
-            <Link to="/allRecipes" className="home-btn">Back</Link>
+            <Link to="/allRecipes" className="home-btn">My Recipes</Link>
             <Link to="/addRecipe" className="add-recipe-btn">Add Recipe</Link>
         </header>
         <div className="recipe-info">
           {/* <h1>Recipe Page</h1> */}
           <h1>{recipe.title}</h1>
+          <p className="recipeDescription">{recipe.description}</p>
           <img src={recipe.imageSource} alt="" />
-          <h2>Description</h2>
-          <p>{recipe.description}</p>
+          {/* <h2>Description</h2> */}
           <h2>Instructions</h2>
         <p >{recipe.instructions}</p>
         </div>
+        {/* <button onClick={deleteRecipe}>Delete Recipe</button> */}
+          <button onClick={this.deleteRecipe}>Delete Recipe</button>
       </div>
     );
   }
