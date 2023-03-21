@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import '../stylesheets/recipePage.scss';
 
@@ -6,15 +6,15 @@ class RecipePage extends Component {
   constructor(props) {
     super(props);
 
-    const {pathname} = window.location;
-    const id = pathname.split("/").pop();
+    const { pathname } = window.location;
+    const id = pathname.split('/').pop();
 
     this.state = {
       recipesList: {},
       id: id,
       recipe: {},
       fetchedRecipe: false,
-      recipeDeleted: false
+      recipeDeleted: false,
     };
 
     // this.addRecipe = this.addRecipe.bind(this);
@@ -23,29 +23,24 @@ class RecipePage extends Component {
 
   componentDidMount() {
     fetch('/api/recipes')
-      .then(res => res.json())
-      .then(res => this.addRecipes(res))
-      .catch(err => console.log('App.componentDidMount: get recipes ERROR: ', err));
+      .then((res) => res.json())
+      .then((res) => this.addRecipes(res))
+      .catch((err) =>
+        console.log('App.componentDidMount: get recipes ERROR: ', err)
+      );
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if(this.state.recipeDeleted === true){
-  //   const navigate = useNavigate();
-  //   navigate("/allRecipes");
-  //   }
-  // }
 
   addRecipes(recipes) {
     const recipesList = [...recipes];
-    this.setState( {recipesList});
+    this.setState({ recipesList });
     return this.findRecipe(this.state.recipesList);
   }
 
   findRecipe(recipes) {
-    for(let i=0; i<recipes.length; i++) {
-      if(recipes[i]._id === this.state.id) {
-        this.setState({recipe: {...recipes[i]}});
-        this.setState({fetchedRecipe: true});
+    for (let i = 0; i < recipes.length; i++) {
+      if (recipes[i]._id === this.state.id) {
+        this.setState({ recipe: { ...recipes[i] } });
+        this.setState({ fetchedRecipe: true });
       }
     }
   }
@@ -53,28 +48,28 @@ class RecipePage extends Component {
   deleteRecipe(event) {
     const { recipe } = this.state;
     event.preventDefault();
-    const postPath = "/api/recipes";
+    const postPath = '/api/recipes';
     fetch(postPath, {
       method: 'DELETE',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        title: recipe.title
+        title: recipe.title,
+      }),
       })
-    })
-    .then((res)=> {
+      .then((res) => {
       alert('Congrats! You successfully deleted a recipe to your database!');
-      this.setState({recipeDeleted: true});
+        this.setState({ recipeDeleted: true });
     })
-    .catch(err => console.log('RecipePage: delete recipe ERROR: ', err));
+      .catch((err) => console.log('RecipePage: delete recipe ERROR: ', err));
   }
 
   render() {
-    if(!this.state.fetchedRecipe) return null;
-    if(this.state.recipeDeleted) return <Navigate to="/allRecipes"/>
+    if (!this.state.fetchedRecipe) return null;
+    if (this.state.recipeDeleted) return <Navigate to='/allRecipes' />;
     const { recipe } = this.state;
 
     return (
