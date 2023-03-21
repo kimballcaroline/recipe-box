@@ -15,8 +15,8 @@ recipeController.addRecipe = (req, res, next) => {
           message: { err: 'An error occured while trying to create a recipe' },
         });
       res.locals.newRecipe = recipe;
-    return next();
-}
+      return next();
+    }
   );
 };
 
@@ -47,20 +47,32 @@ recipeController.getOneRecipe = (req, res, next) => {
         status: 400,
         message: { err: 'No recipe with the given id is in the database' },
       });
-}
+    }
     res.locals.recipe = recipe;
     return next();
   });
 };
 
 recipeController.deleteRecipe = (req, res, next) => {
-  const { title } = req.body;
-  Recipe.deleteOne({ title }, (err, recipe) => {
-    if(err) return next('Error in recipeController.deleteRecipe delete request: ' + JSON.stringify(err));
-    res.locals.title = title;
+  const { id } = req.params;
+
+  Recipe.findOneAndDelete({ _id: id }, (err, recipe) => {
+    if (err) {
+      return next({
+        log: `The following error occured: ${err}`,
+        status: 418,
+        message: { err: 'An error occured while trying to delete a recipe' },
+      });
+    } else if (!recipe) {
+      return next({
+        status: 400,
+        message: { err: 'No recipe with the given id is in the database' },
+      });
+    }
+    res.locals.recipe = recipe;
     return next();
   });
-}
+};
 
 recipeController.updateRecipe = (req, res, next) => {
   const { id } = req.params;
