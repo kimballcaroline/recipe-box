@@ -17,4 +17,9 @@
     width: 640px;
   }
 }
+
+@media screen and (max-width: 639px) {
+  #main-content {
+    width: 480px;
+  }
 }
