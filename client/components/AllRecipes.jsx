@@ -1,30 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import Recipes from './Recipes.jsx';
-import SearchBar from './custom/SearchBar.jsx';
+import React from 'react';
+import RecipeCard from './RecipeCard.jsx';
 import '../stylesheets/allRecipes.scss';
+import { Box, Stack } from '@mui/material';
 
-const AllRecipes = () => {
-  const [recipesList, setRecipesList] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    fetch('/api/recipes')
-      .then((res) => res.json())
-      .then((recipes) => {
-        setRecipesList(recipes);
-      })
-      .catch((err) => console.error('ERROR: Get recipes failed:  ', err));
-  }, []);
+export default function AllRecipes({ recipesList, searchQuery }) {
+  const filteredRecipes = recipesList.filter((recipe) => {
+    if (searchQuery === '') {
+      return recipe;
+    } else {
+      return (
+        recipe.title.toLowerCase().includes(searchQuery) ||
+        recipe.description.toLowerCase().includes(searchQuery)
+      );
+    }
+  });
 
   return (
-    <section className='all-recipes-contents'>
-      <SearchBar setSearchQuery={setSearchQuery} />
-      <div className='recipes-component-wrapper'>
-        <Recipes recipesList={recipesList} searchQuery={searchQuery} />
-      </div>
-    </section>
-    // );
+    <div className='recipeCardsContainer'>
+      <Box>
+        <Stack
+          spacing={2}
+          sx={{
+            overflow: 'auto',
+          }}
+        >
+          {filteredRecipes.map((recipe, index) => (
+            <RecipeCard
+              key={`recipe${index}`}
+              title={recipe.title}
+              description={recipe.description}
+              instructions={recipe.instructions}
+              ingredients={recipe.ingredients}
+              _id={recipe._id}
+              img={recipe.imageSource}
+            />
+          ))}
+        </Stack>
+      </Box>
+    </div>
   );
-};
-
-export default AllRecipes;
+}
