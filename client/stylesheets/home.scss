@@ -4,88 +4,51 @@
   display: flex;
   flex-direction: column;
   align-content: center;
+  // width: 640px;
   justify-content: center;
-  height: 926px;
 
   .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
- }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+    border-bottom: 1px solid $primary-color;
+    // padding-bottom: 40px;
+  }
 
- h1 {
-  font-family: $header-font;
-  text-transform: uppercase;
-  font-size: 50px;
-  margin: 40px 0 0 0;
- }
+  h1 {
+    font-family: $header-font;
+    // text-transform: uppercase;
+    font-size: 36px;
+    margin: 0;
+  }
 
- h2 {
-  font-family: $main-font;
-  font-size: 14px;
-  margin: 0 0 40px 0;
- }
+  h2 {
+    font-family: $main-font;
+    font-size: 12px;
+    font-weight: 400;
+    // margin-top: 10px;
+  }
 
- .primary-btn-wrapper {
-  margin: 40px 0 0 0;
-  width: 270px;
-  height: 60px;
-  border: 1px solid $primary-color;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  transition: all 0.5s ease-in-out;
- }
+  img {
+    width: 120px;
+    margin: 20px 0;
+    border: 4px solid $primary-color;
+    // border-radius: 20px;
+  }
 
- .primary-btn {
-  font-size: 20px;
-  width: 270px;
-  text-align: center;
-  color: $primary-color;
-  text-decoration: none;
-  transition: all 0.5s ease-in-out;
- }
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 15%;
+    padding-top: 10px;
+  }
+}
 
-  .primary-btn-wrapper:hover {
-  background-color: $primary-color;
- }
-
- .primary-btn:hover {
-  color: $background-color
- }
-
-  .secondary-btn-wrapper {
-  margin: 40px 0 0 0;
-  width: 270px;
-  height: 60px;
-  border: 1px solid $primary-color;
-  background-color: $primary-color;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  transition: all 0.5s ease-in-out;
- }
-
- .secondary-btn {
-  font-size: 20px;
-  width: 270px;
-  text-align: center;
-  color: $background-color;
-  text-decoration: none;
-  transition: all 0.5s ease-in-out;
- }
-
-  .secondary-btn-wrapper:hover {
-  background-color: $background-color;
- }
-
- .secondary-btn:hover {
-  color: $primary-color;
- }
- }
- 
- 
+// @media screen and (max-width: 639px) {
+//   .home-contents {
+//     width: 480px;
+//   }
+// }

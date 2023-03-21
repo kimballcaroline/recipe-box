@@ -3,36 +3,5 @@
 .all-recipes-contents {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: center;
-
-  header {
-    margin: 20px 0 0 20px;
-    display: flex;
-    gap: 260px;
-  }
-
-  .home-btn {
-    font-family: $main-font;
-    font-size: 14px;
-    color: $primary-color;
-    transition: all 0.2s ease-in-out;
-  }
-   .home-btn:hover{
-    opacity: 50%;
-  }
-  
-   .add-recipe-btn {
-    font-family: $main-font;
-    font-size: 14px;
-    color: $primary-color;
-    transition: all 0.2s ease-in-out;
-  }
-
-   .add-recipe-btn:hover{
-    opacity: 50%;
-  }
-
+  margin-top: 20px;
 }
-
-

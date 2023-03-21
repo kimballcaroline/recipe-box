@@ -1,18 +1,10 @@
 @import './variables';
 
-.recipesContainer {
-
-  .recipesHeader{
-    font-family: $header-font;
-    font-size: 24px;
-    margin: 20px;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  
-  .recipeCardsContainer {
-    margin: 20px;
-  }
-
-  
+.recipeCardsContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 480px;
+  // align-items: center;
+  // justify-content: center;
+  // flex-wrap: wrap;
 }
