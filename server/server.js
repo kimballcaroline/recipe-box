@@ -1,10 +1,8 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
-
+const recipeRouter = require('./routers/recipeRouter');
 const app = express();
-
-const recipeController = require('./controllers/recipeController');
 
 const PORT = 3000;
 
@@ -14,19 +12,9 @@ mongoose.connect(process.env.MONGO_URI);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/api/recipes', recipeRouter);
+
 app.use(express.static(path.resolve(__dirname, 'client')));
-
-app.put('/api/recipes', recipeController.addRecipe, (req, res) => {
-  return res.status(200).send(res.locals.recipe);
-});
-
-app.get('/api/recipes', recipeController.getRecipes, (req, res) => {
-  return res.status(200).json(res.locals.allRecipes);
-});
-
-app.delete('/api/recipes', recipeController.deleteRecipe, (req, res) => {
-  return res.status(200).send(res.locals.title);
-});
 
 app.get('/', (req, res) =>
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
