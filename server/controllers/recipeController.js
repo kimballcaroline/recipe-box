@@ -22,10 +22,16 @@ recipeController.addRecipe = (req, res, next) => {
 
 recipeController.getRecipes = (req, res, next) => {
   Recipe.find({}, (err, recipes) => {
-    if(err) return next('Error in recipeController.getRecipes: ' + JSON.stringify(err));
+    if (err)
+      return next({
+        log: `The following error occured: ${err}`,
+        status: 418,
+        message: { err: 'An error occured while trying to get all recipes' },
+      });
     res.locals.allRecipes = recipes;
     return next();
   });
+};
 
 recipeController.getOneRecipe = (req, res, next) => {
   const { id } = req.params;
