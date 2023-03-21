@@ -1,47 +1,30 @@
-import React, {Component} from 'react';
-import Recipes from './Recipes.jsx'; 
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import Recipes from './Recipes.jsx';
+import SearchBar from './custom/SearchBar.jsx';
 import '../stylesheets/allRecipes.scss';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
+const AllRecipes = () => {
+  const [recipesList, setRecipesList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-    this.state = {
-      recipesList: {},
-      fetchedRecipes: false
-    };
-
-    this.addRecipes = this.addRecipes.bind(this);
-
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     fetch('/api/recipes')
-      .then(res => res.json())
-      .then(res => this.addRecipes(res))
-      .catch(err => console.log('App.componentDidMount: get recipes ERROR: ', err));
-  }
+      .then((res) => res.json())
+      .then((recipes) => {
+        setRecipesList(recipes);
+      })
+      .catch((err) => console.error('ERROR: Get recipes failed:  ', err));
+  }, []);
 
-  addRecipes(recipes) {
-    const recipesList = [...recipes];
-    this.setState( {recipesList});
-    this.setState({fetchedRecipes: true});
-  }
-
-  render() {
-    if(!this.state.fetchedRecipes) return null;
-    return (
-      <div className="all-recipes-contents">
-        <header className="header">
-            <Link to="/" className="home-btn">Home</Link>
-            <Link to="/addRecipe" className="add-recipe-btn">Add Recipe</Link>
-        </header>
-        <div className="recipes-component-wrapper"><Recipes {...this.state.recipesList}/></div>
+  return (
+    <section className='all-recipes-contents'>
+      <SearchBar setSearchQuery={setSearchQuery} />
+      <div className='recipes-component-wrapper'>
+        <Recipes recipesList={recipesList} searchQuery={searchQuery} />
       </div>
-    );
-  }
-}
+    </section>
+    // );
+  );
+};
 
-
-export default Home;
+export default AllRecipes;
