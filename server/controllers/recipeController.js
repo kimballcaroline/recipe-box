@@ -62,14 +62,34 @@ recipeController.deleteRecipe = (req, res, next) => {
   });
 }
 
+recipeController.updateRecipe = (req, res, next) => {
+  const { id } = req.params;
+  const { title, description, instructions, ingredients, imageSource } =
+    req.body;
 
-//STRETCH FEATURE: EDIT PRE-EXISTING RECIPES
-// recipeController.updateRecipe = (req, res, next) => {
-//   const { body } = req;
-//   console.log(body);
-//   //we'll need the recipe id from the onClick event
-//   //then use the rest of the info from the body to update the file
-//   return next();
-// }
+  Recipe.findOneAndUpdate(
+    { _id: id },
+    { title, description, instructions, ingredients, imageSource },
+    { new: true },
+    (err, recipe) => {
+      if (err) {
+        return next({
+          log: `The following error occured: ${err}`,
+          status: 418,
+          message: {
+            err: 'An error occured while trying to update a recipe',
+          },
+        });
+      } else if (!recipe) {
+        return next({
+          status: 400,
+          message: { err: 'No recipe with the given id is in the database' },
+        });
+      }
+      res.locals.updatedRecipe = recipe;
+      return next();
+    }
+  );
+};
 
 module.exports = recipeController;
