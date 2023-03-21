@@ -1,9 +1,10 @@
+@import './variables';
+
 .footer {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
   padding: 1rem;
-  background-color: rgb(235, 195, 64);
+  background-color: $accent-color;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -12,5 +13,18 @@
   h2 {
     font-size: 14px;
     font-weight: 400;
+  }
+
+  .col {
+    display: flex;
+    margin-left: 20px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  a {
+    color: $primary-color;
   }
 }
