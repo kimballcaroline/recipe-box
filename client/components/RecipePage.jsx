@@ -81,14 +81,20 @@ class RecipePage extends Component {
         <div className="recipe-info">
           {/* <h1>Recipe Page</h1> */}
           <h1>{recipe.title}</h1>
-          <p className="recipeDescription">{recipe.description}</p>
-          <img src={recipe.imageSource} alt="" />
-          {/* <h2>Description</h2> */}
+        <div className='recipe-details'>
+          <div className='ingredients'>
+            <h2>Ingredients</h2>
+            <ul>
+              <li>dfabf</li>
+              <li>dbabf</li>
+              <li>dssgn</li>
+            </ul>
+          </div>
+          <div className='instructions'>
           <h2>Instructions</h2>
-        <p >{recipe.instructions}</p>
+            <p>{recipe.instructions}</p>
         </div>
-        {/* <button onClick={deleteRecipe}>Delete Recipe</button> */}
-          <button onClick={this.deleteRecipe}>Delete Recipe</button>
+        </div>
       </div>
     );
   }
