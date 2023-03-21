@@ -1,36 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import RecipeCard from './RecipeCard.jsx';
 import '../stylesheets/recipes.scss';
+// import { Stack } from '@mui/system';
+import { Paper, Box, Typography, Stack } from '@mui/material';
 
+export default function Recipes({ recipesList, searchQuery }) {
+  const filteredRecipes = recipesList.filter((recipe) => {
+    if (searchQuery === '') {
+      return recipe;
+    } else {
+      return (
+        recipe.title.toLowerCase().includes(searchQuery) ||
+        recipe.description.toLowerCase().includes(searchQuery)
+      );
+    }
+  });
 
-class Recipes extends Component {
-  constructor(props) {
-    super(props);
-    
-  }
-
-  render(props) {  
-    const recipes = this.props;
-    const recipesList = [];
-    for(const recipe in recipes) {
-      recipesList.push(recipes[recipe]);
-    };
-   //now we have an array of recipes with _id, title, descriptions, and instructions props
-
-   const recipeCards = recipesList.map((el, index, array) => {
-    return (
-      <RecipeCard key={index} title={el.title} description={el.description} instructions={el.instructions} id={el._id} img={el.imageSource}/>
-    )
-   })
-
-    return(
-      <section className="recipesContainer">
-        <h2 className="recipesHeader">My Recipes</h2>
-        <div className="recipeCardsContainer">{recipeCards}</div>
-      </section>
-    )
-  };
-
+  return (
+    <div className='recipeCardsContainer'>
+      <Box>
+        <Stack
+          spacing={2}
+          sx={{
+            overflow: 'auto',
+          }}
+        >
+          {filteredRecipes.map((recipe, index) => (
+            <RecipeCard
+              key={index}
+              title={recipe.title}
+              description={recipe.description}
+              instructions={recipe.instructions}
+              id={recipe._id}
+              img={recipe.imageSource}
+            />
+          ))}
+        </Stack>
+      </Box>
+    </div>
+  );
 }
-
-export default Recipes;
