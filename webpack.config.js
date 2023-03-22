@@ -39,7 +39,11 @@ module.exports = {
     port: 8080,
     hot: true,
     proxy: {
-      '/api/**': 'http://localhost:3000/',
+      '/api/**': {
+        target: 'http://localhost:8080/',
+        router: () => 'http://localhost:3000',
+        secure: false,
+      },
     },
     headers: { 'Access-Control-Allow-Origin': '*' },
   },
