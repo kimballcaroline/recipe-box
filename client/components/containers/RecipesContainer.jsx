@@ -8,7 +8,7 @@ const RecipesContainer = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/recipes', { mode: cors })
+    fetch('http://localhost:3000/api/recipes', { mode: 'cors' })
       .then((res) => res.json())
       .then((recipes) => {
         setRecipesList(recipes);

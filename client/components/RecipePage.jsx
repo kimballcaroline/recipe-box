@@ -11,7 +11,7 @@ export default function RecipePage() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/recipes/${id}`, { mode: cors })
+    fetch(`http://localhost:3000/api/recipes/${id}`, { mode: 'cors' })
       .then((res) => res.json())
       .then((recipe) => setRecipe(recipe))
       .catch((err) => console.log('ERROR: Fetching recipe failed', err));
