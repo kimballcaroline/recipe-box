@@ -6,7 +6,6 @@ const app = express();
 
 const PORT = 3000;
 
-// const mongoURI = 'mongodb://localhost/recipeBox';
 mongoose.connect(process.env.MONGO_URI);
 
 app.use(express.json());
