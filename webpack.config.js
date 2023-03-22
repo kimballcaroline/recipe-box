@@ -40,7 +40,7 @@ module.exports = {
     hot: true,
     proxy: {
       '/api/**': {
-        target: 'http://localhost:8000/',
+        target: 'http://localhost:8080/',
         router: () => 'http://localhost:3000',
         secure: false,
       },
