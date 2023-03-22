@@ -8,7 +8,7 @@ const RecipesContainer = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/recipes')
+    fetch('http://localhost:3000/api/recipes')
       .then((res) => res.json())
       .then((recipes) => {
         setRecipesList(recipes);
