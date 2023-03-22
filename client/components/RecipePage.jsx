@@ -11,7 +11,7 @@ export default function RecipePage() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/recipes/${id}`)
+    fetch(`/api/recipes/${id}`)
       .then((res) => res.json())
       .then((recipe) => setRecipe(recipe))
       .catch((err) => console.log('ERROR: Fetching recipe failed', err));
